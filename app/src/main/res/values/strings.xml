@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Bora se Hidratar?</string>
+    <string name="formatoHoraIntervalo">Exemplo: 00:30</string>
+    <string name="formatoHoraAcordar">Exemplo: 07:30</string>
+    <string name="formatoHoraDormir">Exemplo: 22:30</string>
+    <string name="msg_hidratar">Esta na hora de se hidratar!</string>
+    <string name="ok">OK</string>
+</resources>

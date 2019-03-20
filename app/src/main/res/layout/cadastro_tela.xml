@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".TelaCadastro">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A cada quanto tempo você gostaria de tomar água?"
+            android:textSize="16sp"/>
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/editTxtHoraIntervalo"
+              android:autofillHints="00:30"
+              android:hint="@string/formatoHoraIntervalo"
+              android:layout_marginTop="10dp"
+              android:inputType="time"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Que horas você acorda normalmente?"
+            android:textSize="16sp"/>
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/editTxtHoraAcordar"
+              android:autofillHints="07:30"
+              android:hint="@string/formatoHoraAcordar"
+              android:layout_marginTop="10dp"
+              android:inputType="time"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Que horas você geralmente dorme?"
+            android:textSize="16sp"/>
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/editTxtHoradormir"
+              android:layout_marginTop="10dp"
+              android:autofillHints="22:30"
+              android:hint="@string/formatoHoraDormir"
+              android:inputType="time"/>
+
+    <Button android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar"
+            android:id="@+id/btnCadastrarIntervalo"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+
+
+</LinearLayout>
