@@ -14,20 +14,18 @@ import java.util.*
 //Classe para receber o BroadcastReceiver do sistema que o horário
 class AlarmReceiver : BroadcastReceiver() {
 
+    //Metodo para receber o aviso do sistema que o horario cadastrado no alarme foi alcançado
     override fun onReceive(context: Context?, intent: Intent?) {
 
         val horaAtual = Calendar.getInstance()
 
-        Log.d("ALARMRECEIVERATUAL", horaAtual.timeInMillis.toString() )
-        Log.d("ALARMRECEIVERINICIAL", AlarmUtil.horaInicial.timeInMillis.toString() )
-        Log.d("ALARMRECEIVERFIM", AlarmUtil.horaFim.timeInMillis.toString() )
-
-
+        //Checagem para verificar se está no intervalo válido para o usuário beber água, ou seja, se ele não está dormindo
         if( horaAtual.timeInMillis < AlarmUtil.horaFim.timeInMillis  &&
             horaAtual.timeInMillis  > AlarmUtil.horaInicial.timeInMillis)
             setNotification(context)
     }
 
+    //Cria a notificação para informar ao usuário que está na hora de beber água
     private fun setNotification(context: Context?) {
 
         val manager =  createChannel(context)
@@ -35,7 +33,7 @@ class AlarmReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val notification = NotificationCompat.Builder(context!!.applicationContext, "beber agua")
             .setContentIntent(pendingIntent)
-            .setContentTitle("Bora se hidratar?")
+            .setContentTitle("Beber água")
             .setContentText("Está na hora de beber água!")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setAutoCancel(true)
@@ -43,7 +41,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
              manager.notify(12, notification)
     }
-
+    //Cria o canal da notificação para o usuário
     private fun createChannel(context: Context?) : NotificationManager {
 
         val channel = NotificationChannel("beber agua", "Bora se Hidratar?", NotificationManager.IMPORTANCE_HIGH)

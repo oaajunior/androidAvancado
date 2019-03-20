@@ -1,7 +1,5 @@
 package com.example.atividadeandroidavancado
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.Intent
@@ -24,8 +22,10 @@ class TelaCadastro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cadastro_tela)
 
+        //Captura do botão que cadastra o intervalo para o usuário
         val botaoCadastrarIntervalo = findViewById<Button>(R.id.btnCadastrarIntervalo)
 
+        //Criação de uma instancia para conexão com o banco de dados
         val database = Room.databaseBuilder(
             this,
             AppDataBase::class.java,
@@ -33,26 +33,34 @@ class TelaCadastro : AppCompatActivity() {
             .allowMainThreadQueries()
             .build()
 
+        //Metodo que cadastro o intervalo do usuário.
         botaoCadastrarIntervalo.setOnClickListener {
 
-            var horaUm = findViewById<TextView>(R.id.editTxtHoraIntervalo).getText().toString()
-            var horaDois = findViewById<TextView>(R.id.editTxtHoraAcordar).getText().toString()
-            var horaTres = findViewById<TextView>(R.id.editTxtHoradormir).getText().toString()
+            var horaUm = findViewById<TextView>(R.id.editTxtHoraIntervalo)
+            var horaDois = findViewById<TextView>(R.id.editTxtHoraAcordar)
+            var horaTres = findViewById<TextView>(R.id.editTxtHoradormir)
 
             try {
-                val formatter = DateTimeFormatter.ofPattern("HH:mm")
-                var horaIntervalo = LocalTime.parse(horaUm, formatter)
-                var horaAcordar = LocalTime.parse(horaDois, formatter)
-                var horaDormir = LocalTime.parse(horaTres, formatter)
 
                 val intervaloAguaDao = database.intervaloDao()
+                val resultado:List<IntervaloAgua> = intervaloAguaDao.all()
+
+                    for(item in resultado) {
+                        Log.d(
+                            "Elementos",
+                            "${item.id}, ${item.horaIntervalo}, ${item.horaAcordar}, ${item.horaDormir} "
+                        )
+                    }
+
+                val formatter = DateTimeFormatter.ofPattern("HH:mm")
+                var horaIntervalo = LocalTime.parse(horaUm.text.toString(), formatter)
+                var horaAcordar = LocalTime.parse(horaDois.text.toString(), formatter)
+                var horaDormir = LocalTime.parse(horaTres.text.toString(), formatter)
+
+                //Inclui o novo horario no banco de dados
                 intervaloAguaDao.add(IntervaloAgua(0, horaIntervalo.toString(), horaAcordar.toString(), horaDormir.toString()))
 
-                val resultado = intervaloAguaDao.all()
-                for(item in resultado){
-                    Log.d("Elementos" , "${item.id}, ${item.horaIntervalo}, ${item.horaAcordar}, ${item.horaDormir} ")
-                }
-
+                //Executa o método setAlarm que configura os horarios informados pelo usuário.
                 val retorno = AlarmUtil.setAlarm(this, horaIntervalo, horaAcordar, horaDormir)
 
                 if(retorno) {

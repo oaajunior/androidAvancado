@@ -4,5 +4,6 @@
     <string name="formatoHoraAcordar">Exemplo: 07:30</string>
     <string name="formatoHoraDormir">Exemplo: 22:30</string>
     <string name="msg_hidratar">Esta na hora de se hidratar!</string>
+    <string name="hora_beber_agua">O ato de se hidratar é muito importante para a saúde. Aqui vamos te ajudar para não esquecer de realizar esta ação.<br> Quando quiser começar, basta clicar no botão CADASTRAR INTERVALO</br>.</string>
     <string name="ok">OK</string>
 </resources>

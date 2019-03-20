@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
+//Activity para informar ao usuário que a hora de beber agua chegou
 class LembrarBeberAgua : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,9 +13,14 @@ class LembrarBeberAgua : AppCompatActivity() {
 
         val btnOK = findViewById<Button>(R.id.btnOK)
 
+        //Finaliza a activity
         btnOK.setOnClickListener {
 
             finish()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

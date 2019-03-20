@@ -9,6 +9,7 @@ import android.util.Log
 import java.time.LocalTime
 import java.util.*
 
+//Objeto criado para confirmar o alarme nos intervalos que o usuário informou
 object AlarmUtil {
 
     var pendingIntent:PendingIntent? = null
@@ -24,10 +25,6 @@ object AlarmUtil {
 
         horaFim.set(Calendar.HOUR_OF_DAY, horaDormir.hour)
         horaFim.set(Calendar.MINUTE, horaDormir.minute)
-
-        Log.d("HORA_EM_MINUTO", horaIntervalo.minute.toLong().toString() )
-        Log.d("HORA_EM_INICIO", horaInicial.toString() )
-        Log.d("HORA_EM_MINUTO", horaFim.toString() )
 
         alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
